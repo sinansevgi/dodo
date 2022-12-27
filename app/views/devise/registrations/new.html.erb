@@ -1,0 +1,39 @@
+<div class="container mx-auto px-10 py-10">
+
+  <h2 class="font-slate-900 font-medium text-lg mb-10">Kayıt Ol</h2>
+  <div class="p-5 border border-slate-900 w-1/2">
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false } }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :isim, class: "sr-only" %><br/>
+        <%= f.text_field :isim, autofocus: true, autocomplete: "isim", required: true, placeholder: "İsim" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, class: "sr-only" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, placeholder: "E-posta" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "Şifre", class: "sr-only" %>
+        <% if @minimum_password_length %>
+          <em>(Minimum <%= @minimum_password_length %> karakter)</em>
+        <% end %><br/>
+        <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: "Şifre" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, class: "sr-only" %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: "Şifre Doğrulama" %>
+      </div>
+
+      <div class="actions flex">
+        <%= f.submit "Kayıt Ol", options = { class: "font-bold bg-red-600 hover:bg-red-700 text-white my-5 py-2 px-7 rounded" } %>
+        <%= link_to "Giriş Yap", new_session_path(resource_name), class: "border-gray-200 shadow-lg font-bold bg-white hover:bg-gray-200 text-red-600 mx-10 my-5 py-2 px-7 rounded" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

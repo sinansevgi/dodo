@@ -1,0 +1,9 @@
+<div  class="mx-auto max-w-3xl mt-24">
+<h1 class="font-bold text-4xl mb-6">Yapilacaklar </h1>
+
+  <%= render "form", gorev: Gorev.new %>
+  <%= turbo_stream_from 'gorevs' %>
+  <ul id="gorevs" class="divide-y list-none mb-10">
+    <%= render @gorevs%>
+  </ul>
+</div>

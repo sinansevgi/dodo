@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DODO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+  <header>
+    <nav class="bg-slate-900 px-10">
+      <div class="mx-auto">
+        <div class="relative flex h-16 items-center justify-between px-3">
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <% if kullanici_signed_in? %>
+                <%= link_to current_kullanici.isim, gorevs_path, class: "bg-transparent hover:bg-slate-600 text-white py-2 px-4 rounded" %>
+                <%= button_to "Çıkış", destroy_kullanici_session_path,  :method => :delete, class:"bg-transparent hover:bg-slate-600 text-white py-2 px-4 rounded" %>
+              <% end %>
+
+            </div>
+          </div>
+          <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div class="flex space-x-4">
+
+              <% if kullanici_signed_in? %>
+              <%= image_tag("DODO.png") %>
+                <% else %>
+                <div class="inline-flex">
+                  <%= link_to 'Giriş Yap', new_kullanici_session_path, class: "bg-white hover:bg-gray-200 text-red-600 py-2 px-4 rounded-l" %>
+                  <%= link_to 'Kayıt Ol', new_kullanici_registration_path, class: "bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-r" %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <main class="mx-auto">
+      <%= yield %>
+    </main>
+  </body>
+</html>

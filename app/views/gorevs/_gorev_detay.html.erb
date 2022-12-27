@@ -1,0 +1,32 @@
+  <%= turbo_frame_tag dom_id(gorev) do %>
+    <div class="flex justify-between items-center w-full">
+      <div class="flex gap-5 items-center">
+        <% if gorev.durum? %>
+          <%= button_to " ", gorev_path(gorev, gorev: { durum: false }), method: :patch, class: "shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] w-10 h-10 rounded-full bg-cyan-600" %>
+        <% else %>
+          <%= button_to " ", gorev_path(gorev, gorev: { durum: true }), method: :patch, class: "shadow-[inset_0_4px_4px_rgba(0,0,0,0.25)] w-10 h-10 rounded-full bg-red-600" %>
+        <% end %>
+        <%= link_to gorev.isim, gorevs_path, class: "flex-1 #{"line-through opacity-50" if gorev.durum?}" %>
+      </div>
+      <div class="flex justify-end">
+        <% if gorev.sontarih.mjd - Date.today.mjd > 0 && !gorev.durum? %>
+          <p><%= gorev.sontarih.mjd - Date.today.mjd %> gün kaldı</p>
+        <% elsif !gorev.durum? %>
+          <p><%= Date.today.mjd - gorev.sontarih.mjd %> gün gecikmede</p>
+        <% end %>
+        <%= link_to edit_gorev_path(gorev) do %>
+          <%= heroicon 'pencil-square', variant: :outline, options: { class: "text-blue-900 h-5 mx-3" } %>
+        <% end %>
+        <%= button_to gorev_path(gorev), method: :delete do %>
+          <%= heroicon 'x-circle', variant: :outline, options: { class: "text-blue-900 h-5" } %>
+
+        <% end %>
+      </div>
+    </div>
+    <hr class="my-3"/>
+    <div>
+      <h3>Notlar:</h3>
+      <p><%= gorev.notlar %></p>
+    </div>
+
+  <% end %>

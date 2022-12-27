@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-slate-900">
+  <div  class="mx-auto text-white grid place-items-center grid-cols-2">
+  <div class="px-10">
+    <%= image_tag("DODO.png") %>
+    <h2 class="px-7 mt-10">Planla, yönet, kazan!</h2>
+    <p class="px-7 mb-10">DODO okul hayatınızı organize etmeye yardımcı <br>olurken daha odaklı, düzenli bir yaşam sunar.</p>
+    <% if kullanici_signed_in? %>
+      <%= link_to 'Hemen başla', gorevs_path, class: "font-bold bg-red-600 hover:bg-red-700 text-white mx-7 py-2 px-7 rounded" %>
+    <% else %>
+      <%= link_to 'Hemen başla', new_kullanici_session_path, class: "font-bold bg-red-600 hover:bg-red-700 text-white mx-7 py-2 px-7 rounded" %>
+    <% end %>
+  </div>
+  <div class="grid place-items-end">
+    <%= image_tag "DODOKUS.png" %>
+  </div>
+
+</div>
+
+</div>

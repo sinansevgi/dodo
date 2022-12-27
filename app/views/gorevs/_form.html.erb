@@ -1,0 +1,39 @@
+<%= form_with(model: gorev, id: "#{dom_id(gorev)}_form") do |form| %>
+  <% if gorev.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(gorev.errors.count, "error") %> prohibited this gorev from being saved:</h2>
+
+      <ul>
+        <% gorev.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div  class="relative">
+  <div class="shadow-md border border-gray-200 border-b-0">
+    <%= form.label :isim, class: "sr-only" %>
+    <%= form.text_field :isim, class: "block border-0 outline-none px-6 py-4 w-full focus:border-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-900 text-lg placeholder:text-400", placeholder: "+ Görev Ekle" %>
+  </div>
+
+<!--  <div class="absolute top-0 right-0">-->
+    <%#= form.submit class: "mt-px py-4 px-5 bg-blue-900 text-white font-medium cursor-pointer border-2 border-blue-900 hover:bg-indigo-900" %>
+<!--  </div>-->
+   <div class="bg-blue-900 px-2 py-1 mb-20">
+     <div class="flex justify-between">
+     <div class="flex justify-start items-center relative">
+         <%= form.date_field :sontarih, class: "z-10 p-3 bg-transparent text-transparent border-0 w-10" %>
+           <%= heroicon 'calendar-days', variant: :outline, options: {class: "z-0 text-white absolute mr-2 w-10"} %>
+     </div>
+       <div class="flex justify-center items-center">
+         <%= form.select :kategori, Gorev.kategoris.keys.map{ |key| [key.humanize, key] }, selected: gorev.kategori %>
+       </div>
+     <div class="flex justify-end items-center">
+       <%= form.select :oncelik, Gorev.onceliks.keys.map{ |key| [key.humanize, key] }, selected: gorev.oncelik %>
+     </div>
+     </div>
+   </div>
+ </div>
+
+<% end %>

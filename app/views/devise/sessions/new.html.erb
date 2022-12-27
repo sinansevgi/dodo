@@ -1,0 +1,28 @@
+<div class="container mx-auto px-10 py-10">
+  <h2 class="font-slate-900 font-medium text-lg mb-10">Giriş Yap</h2>
+  <div class="p-5 border border-slate-900 w-1/2">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email, class: "sr-only" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-posta" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, class: "sr-only" %><br/>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Şifre" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "Beni Hatırla" %>
+        </div>
+      <% end %>
+      <%= link_to "Şifremi Unuttum?", new_password_path(resource_name) %><br/>
+        <div class="actions flex">
+          <%= f.submit "Giriş Yap", options = { class: "font-bold bg-red-600 hover:bg-red-700 text-white my-5 py-2 px-7 rounded" } %>
+          <%= link_to "Kayıt Ol", new_registration_path(resource_name), class: "border-gray-200 shadow-lg font-bold bg-white hover:bg-gray-200 text-red-600 mx-10 my-5 py-2 px-7 rounded" %>
+        </div>
+    <% end %>
+  </div>
+</div>

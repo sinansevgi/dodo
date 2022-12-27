@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "gorevs" do %>
+  <%= render "gorev", gorev: @gorev %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(Gorev.new)}_form" do %>
+  <%= render "form", gorev: Gorev.new %>
+<% end %>
